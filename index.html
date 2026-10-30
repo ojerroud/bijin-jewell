@@ -3,426 +3,396 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Bijin Jewell, bijoux faits main en acier inoxydable, personnalisables à ton initiale. À partir de 20 €.">
 <title>Bijin Jewell</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Bijin Jewell, bijoux faits main en acier inoxydable, dorés et argentés, personnalisables à ton initiale ou ton prénom.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap">
-<style>
-/* Layout: a gold chain drapes across the top like a necklace on a plaster tray; sections hang below it, left-aligned, airy. */
-:root {
-  --plaster: #fdfcfa;
-  --sand: #f3eee7;
-  --ink: #4b3a2e;
-  --ink-soft: #7d6a5a;
-  --gold: #a9803d;
-  --gold-soft: #d8bd86;
-  --cherry: #a3262e;
-  --line: #e2d6c6;
-  --display: "Italiana", "Palatino Linotype", Palatino, Georgia, serif;
-  --body: "Jost", "Segoe UI", system-ui, sans-serif;
-  --script: "Pinyon Script", "Segoe Script", cursive;
-  color-scheme: light; /* the brand is white plaster: one light look, even in dark mode */
-}
-
-* { box-sizing: border-box; }
-body {
-  background: var(--plaster);
-  color: var(--ink);
-  font: 300 1.0625rem/1.65 var(--body);
-  -webkit-font-smoothing: antialiased;
-}
-.wrap {
-  max-width: 68rem;
-  margin: 0 auto;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-}
-h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.1; text-wrap: balance; margin: 0; }
-p { margin: 0; }
-a { color: inherit; }
-.eyebrow {
-  font: 500 0.75rem/1 var(--body);
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.script { font-family: var(--script); color: var(--gold); font-weight: 400; }
-
-.btn {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  padding: 0.95rem 1.6rem;
-  border: 1px solid var(--ink);
-  border-radius: 999px;
-  font: 500 0.8125rem/1 var(--body);
-  letter-spacing: 0.16em; text-transform: uppercase;
-  text-decoration: none;
-  transition: background 0.2s, color 0.2s;
-}
-.btn.solid { background: var(--ink); color: var(--plaster); }
-.btn.solid:hover { background: var(--gold); border-color: var(--gold); }
-.btn.ghost:hover { background: var(--ink); color: var(--plaster); }
-.btn:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
-
-/* header */
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--plaster); }
-header {
-  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
-  background: color-mix(in srgb, var(--plaster) 88%, transparent);
-  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
-}
-header .wrap { display: flex; justify-content: space-between; align-items: center; padding-block: 0.9rem; gap: 1rem; }
-section { scroll-margin-top: 4.5rem; }
-.mark { font: 400 1.5rem/1 var(--display); letter-spacing: 0.32em; text-transform: uppercase; text-decoration: none; }
-.mark small { display: block; font: 300 0.68rem/1 var(--body); letter-spacing: 0.3em; color: var(--ink-soft); margin-top: 0.4rem; }
-/* mobile first: the menu folds behind a button, opens as a panel under the header */
-.menu-btn {
-  display: inline-grid; place-items: center; align-content: center; gap: 5px;
-  width: 44px; height: 44px; padding: 0;
-  background: none; border: 1px solid var(--line); border-radius: 50%;
-  cursor: pointer;
-}
-.menu-btn span { display: block; width: 18px; height: 1.5px; background: var(--ink); transition: transform 0.2s, opacity 0.2s; }
-.menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-.menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-.menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-.menu-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
-header nav {
-  display: none;
-  position: absolute; left: 0; right: 0; top: 100%;
-  flex-direction: column;
-  padding-block: 0.5rem 1.2rem;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-  background: var(--plaster);
-  border-bottom: 1px solid var(--line);
-  box-shadow: 0 12px 24px -18px var(--ink);
-}
-header nav.open { display: flex; }
-header nav a {
-  text-decoration: none; color: var(--ink);
-  font: 400 1.6rem/1 var(--display);
-  padding-block: 0.85rem;
-  border-bottom: 1px solid var(--line);
-}
-header nav a:last-child { border-bottom: 0; }
-header nav a:hover { color: var(--gold); }
-@media (min-width: 720px) {
-  .menu-btn { display: none; }
-  header nav, header nav.open {
-    display: flex; position: static; flex-direction: row; gap: 1.6rem;
-    padding: 0; background: none; border: 0; box-shadow: none;
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          platre: '#FBF9F6', lin: '#F1EBE3', cacao: '#3B2F27',
+          taupe: '#8A7A6B', or: '#B08D57', acier: '#A3AAAF', cerise: '#9E2B33', filet: '#E6DDD1',
+        },
+        fontFamily: {
+          display: ['"Bodoni Moda"', 'Georgia', 'serif'],
+          sans: ['Jost', 'system-ui', 'sans-serif'],
+        },
+        letterSpacing: { label: '0.22em' },
+      },
+    },
   }
-  header nav a { font: 400 0.875rem/1 var(--body); color: var(--ink-soft); padding: 0; border: 0; }
+</script>
+<style>
+/* Layout: "Plâtre & lumière" — airy single column on mobile, two-column hero and configurator from md up.
+   One light look on purpose: the brand is white plaster, it stays white in dark mode too. */
+:root {
+  --platre: #FBF9F6; --lin: #F1EBE3; --cacao: #3B2F27; --taupe: #8A7A6B;
+  --or: #B08D57; --acier: #A3AAAF; --cerise: #9E2B33; --filet: #E6DDD1;
+  color-scheme: light;
 }
+body { background: var(--platre); color: var(--cacao); }
+.gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 50; background: var(--platre); }
+.site-header { top: env(safe-area-inset-top, 0px); }
+h1, h2, h3 { text-wrap: balance; }
 
-/* hero */
-.hero { position: relative; overflow: hidden; }
-.drape { display: block; width: 100%; height: clamp(150px, 22vw, 260px); }
-.drape .link-a { stroke: var(--gold); }
-.drape .link-b { stroke: var(--gold-soft); }
-.drape .charm { fill: var(--gold); }
-.drape .charm-line { stroke: var(--gold); fill: none; }
-.hero .wrap { display: grid; gap: 1.6rem; padding-block: 0 5rem; margin-top: -1rem; text-align: center; justify-items: center; }
-.hero h1 { font-size: clamp(2.6rem, 7vw, 5rem); max-width: 14ch; }
-.hero h1 .script { display: block; font-size: 0.8em; line-height: 1.2; }
-.hero p.lead { max-width: 34rem; color: var(--ink-soft); font-size: 1.125rem; }
-.hero .ctas { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
-.facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.6rem; font-size: 0.8125rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
-.facts span::before { content: "◆"; color: var(--gold); font-size: 0.55rem; margin-right: 0.6rem; vertical-align: 0.15em; }
-
-section { border-top: 1px solid var(--line); }
-section > .wrap { padding-block: clamp(3.5rem, 8vw, 6rem); display: grid; gap: 2.5rem; }
-.head { display: grid; gap: 0.9rem; max-width: 40rem; }
-.head h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); }
-.head p { color: var(--ink-soft); }
-
-/* collections */
-.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 1.5rem; }
-.piece { display: grid; gap: 0.9rem; min-width: 0; }
-.photo {
-  aspect-ratio: 3 / 4; max-width: 100%;
-  border-radius: 2px;
+/* plaster tray with a beaded rim, like the trays in the photos */
+.tray {
+  border-radius: 50%;
   background:
-    radial-gradient(120% 90% at 50% 40%, var(--plaster) 0 45%, var(--sand) 100%);
-  display: grid; place-items: center;
-  overflow: hidden;
+    radial-gradient(circle at 50% 45%, #fff 0 52%, #f6f1ea 70%, transparent 71%),
+    radial-gradient(circle, #fdfbf8 0 3.2%, transparent 3.4%) 0 0 / 12.5% 12.5%;
+  box-shadow: inset 0 0 0 10px #f7f2eb, inset 0 0 0 11px #ece4d8, 0 30px 60px -30px rgba(59,47,39,.35);
+  position: relative;
 }
-.photo img { width: 100%; height: 100%; object-fit: cover; }
-.photo svg { width: 46%; height: auto; }
-.photo .g { stroke: var(--gold); fill: none; }
-.photo .gf { fill: var(--gold); }
-.photo .c { fill: var(--cherry); }
-.piece h3 { font-size: 1.6rem; }
-.piece p { color: var(--ink-soft); font-size: 0.95rem; }
-.tag { font: 500 0.7rem/1 var(--body); letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
-
-/* personalisation */
-.perso { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 3rem; align-items: center; }
-/* live charm preview: type a letter, pick a finish */
-.charm-demo {
-  --metal: var(--gold); --metal-soft: var(--gold-soft); --metal-deep: #7a5a24;
-  display: grid; justify-items: center; gap: 1.1rem;
-  padding: 2rem 1.25rem 2.25rem;
-  background: radial-gradient(110% 90% at 50% 35%, var(--plaster) 0 40%, var(--sand) 100%);
-  min-width: 0;
+.tray::before { /* beads around the rim */
+  content: ""; position: absolute; inset: -4%;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, #fff 0 4.2deg, #efe7dc 4.2deg 5deg);
+  -webkit-mask: radial-gradient(circle, transparent 0 63%, #000 64% 70%, transparent 71%);
+          mask: radial-gradient(circle, transparent 0 63%, #000 64% 70%, transparent 71%);
+  filter: drop-shadow(0 2px 2px rgba(59,47,39,.12));
 }
-.charm-demo[data-finish="silver"] { --metal: #8f989e; --metal-soft: #cfd5d8; --metal-deep: #5c6469; }
-.charm-svg { width: min(100%, 300px); height: auto; }
-.charm-svg .ch { stroke: var(--metal); transition: stroke 0.3s; }
-.charm-svg .ch-ring { stroke: var(--metal); transition: stroke 0.3s; }
-.charm-svg .ch-disc { fill: var(--metal); transition: fill 0.3s; }
-.charm-svg .ch-rim { stroke: var(--metal-soft); transition: stroke 0.3s; }
-.charm-svg text { font: 400 52px var(--display); fill: var(--metal-deep); transition: fill 0.3s; }
-.charm-svg .swing { transform-origin: 120px 80px; }
-.charm-svg .swing.tick { animation: tick 0.6s ease-out; }
-@keyframes tick { 0% { transform: rotate(7deg); } 45% { transform: rotate(-4deg); } 100% { transform: rotate(0); } }
-@media (prefers-reduced-motion: reduce) { .charm-svg .swing.tick { animation: none; } }
-.demo-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.8rem; }
-.charm-demo label { font: 500 0.7rem/1 var(--body); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
-#letter-input {
-  width: 3.4rem; height: 3.4rem; text-align: center;
-  font: 400 1.8rem/1 var(--display); color: var(--ink); text-transform: uppercase;
-  background: var(--plaster); border: 1px solid var(--line); border-radius: 50%;
+.flake { position: absolute; background: var(--or); opacity: .75; clip-path: polygon(10% 0, 100% 30%, 70% 100%, 0 60%); }
+
+/* photo placeholder: honest about what goes there */
+.ph {
+  background:
+    repeating-linear-gradient(135deg, transparent 0 14px, rgba(176,141,87,.07) 14px 15px),
+    var(--lin);
+  outline: 1px solid var(--filet); outline-offset: -10px;
 }
-#letter-input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-.finish { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--plaster); }
-.finish button {
-  font: 500 0.72rem/1 var(--body); letter-spacing: 0.16em; text-transform: uppercase;
-  padding: 0.7rem 1rem; border: 0; border-radius: 999px; background: none; color: var(--ink-soft); cursor: pointer;
-}
-.finish button[aria-pressed="true"] { background: var(--ink); color: var(--plaster); }
-.finish button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.4rem; counter-reset: s; }
-.steps li { display: grid; grid-template-columns: 2.4rem 1fr; gap: 1rem; counter-increment: s; min-width: 0; }
-.steps li::before { content: counter(s); font: 400 2rem/1 var(--display); color: var(--gold); }
-.steps b { font-weight: 500; display: block; }
-.steps span { color: var(--ink-soft); font-size: 0.95rem; }
 
-/* steel */
-.steel { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 2rem 2.5rem; }
-.steel div { display: grid; gap: 0.5rem; min-width: 0; padding-top: 1.2rem; border-top: 1px solid var(--gold-soft); }
-.steel h3 { font-size: 1.45rem; }
-.steel p { color: var(--ink-soft); font-size: 0.95rem; }
-
-/* order */
-.order { background: var(--sand); border-top: 0; }
-.order .wrap { justify-items: center; text-align: center; }
-.order h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); }
-.order .handle { font: 400 1.1rem/1 var(--body); letter-spacing: 0.08em; color: var(--ink-soft); user-select: all; }
-.order dl { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 3rem; margin: 0; }
-.order dt { font: 500 0.7rem/1 var(--body); letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
-.order dd { margin: 0; }
-
-footer .wrap { padding-block: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; font-size: 0.85rem; color: var(--ink-soft); }
-
-@media (prefers-reduced-motion: no-preference) {
-  html { scroll-behavior: smooth; }
-  .drape .sway { transform-origin: 50% 0; animation: sway 6s ease-in-out infinite alternate; }
-  @keyframes sway { from { transform: rotate(-2.5deg); } to { transform: rotate(2.5deg); } }
-}
+/* charm preview */
+.metal-gold { --m: #B08D57; --ms: #DCC395; --md: #6E5226; }
+.metal-silver { --m: #A3AAAF; --ms: #DDE1E3; --md: #5B6368; }
+.charm .m { fill: var(--m); transition: fill .35s; }
+.charm .ms { stroke: var(--ms); transition: stroke .35s; }
+.charm .ml { stroke: var(--m); transition: stroke .35s; }
+.charm .md { fill: var(--md); transition: fill .35s; }
+.swing { transform-origin: 160px 96px; }
+.swing.tick { animation: tick .7s ease-out; }
+@keyframes tick { 0% { transform: rotate(8deg) } 45% { transform: rotate(-4deg) } 100% { transform: rotate(0) } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+@media (prefers-reduced-motion: reduce) { .swing.tick { animation: none; } }
+:focus-visible { outline: 2px solid var(--or); outline-offset: 3px; }
 </style>
+<style>[hidden]{display:none!important}</style>
 </head>
 <body>
 
-<header>
-  <div class="wrap">
-    <a class="mark" href="#">Bijin Jewell<small>bijoux faits main</small></a>
-    <button class="menu-btn" id="menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
-      <span></span><span></span><span></span>
-    </button>
-    <nav aria-label="Sections" id="menu">
-      <a href="#collections">Collections</a>
-      <a href="#atelier">L'atelier</a>
-      <a href="#personnalisation">Personnalisation</a>
-      <a href="#acier">L'acier</a>
-      <a href="#commander">Commander</a>
+<!-- HEADER -->
+<header class="site-header sticky z-40 bg-platre/90 backdrop-blur border-b border-filet">
+  <div class="gutter mx-auto max-w-6xl flex items-center justify-between py-3 gap-4">
+    <a href="#" class="font-display text-xl tracking-[0.3em] uppercase no-underline">Bijin Jewell</a>
+    <nav class="hidden md:flex gap-7 font-sans text-sm text-taupe" aria-label="Sections">
+      <a class="hover:text-or" href="#creations">Créations</a>
+      <a class="hover:text-or" href="#creer">Personnaliser</a>
+      <a class="hover:text-or" href="#atelier">L'atelier</a>
+      <a class="hover:text-or" href="#faq">Questions</a>
     </nav>
+    <a href="#creer" class="font-sans text-[0.7rem] font-medium uppercase tracking-label bg-cacao text-platre rounded-full px-4 py-2.5 hover:bg-or transition-colors">Commander</a>
   </div>
 </header>
 
-<main>
-  <div class="hero">
-    <svg class="drape" viewBox="0 0 1200 260" preserveAspectRatio="none" aria-hidden="true">
-      <path class="link-a" d="M-20 20 Q600 300 1220 20" fill="none" stroke-width="5" stroke-linecap="round" stroke-dasharray="16 10"/>
-      <path class="link-b" d="M-20 20 Q600 300 1220 20" fill="none" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 18" stroke-dashoffset="-13"/>
-    </svg>
-    <div class="wrap">
-      <svg width="86" height="92" viewBox="0 0 86 92" aria-hidden="true" class="drape-bow" style="margin-top:-2.6rem">
-        <g class="sway" style="stroke:var(--gold);fill:none;stroke-width:4;stroke-linecap:round">
-          <line x1="43" y1="0" x2="43" y2="14"/>
-          <circle cx="43" cy="18" r="4"/>
-          <path d="M43 40 C30 22 6 22 8 36 C10 48 30 46 43 40 Z"/>
-          <path d="M43 40 C56 22 80 22 78 36 C76 48 56 46 43 40 Z"/>
-          <path d="M41 44 C36 58 30 72 24 86"/>
-          <path d="M45 44 C50 58 56 72 62 86"/>
-          <circle cx="43" cy="40" r="5" style="fill:var(--gold)"/>
+<main class="font-sans font-light">
+
+  <!-- HERO -->
+  <section class="gutter mx-auto max-w-6xl grid md:grid-cols-[1.05fr_1fr] gap-10 md:gap-6 items-center pt-10 pb-16 md:py-24">
+    <div class="grid gap-6 min-w-0">
+      <p class="text-[0.7rem] font-medium uppercase tracking-label text-or">Atelier de bijoux · acier inoxydable</p>
+      <h1 class="font-display text-[2.6rem] leading-[1.05] sm:text-6xl md:text-[4.2rem]">
+        Faits <em class="text-or">à la main</em>,<br>à ton initiale.
+      </h1>
+      <p class="text-lg text-taupe max-w-md leading-relaxed">Colliers et bracelets assemblés maillon par maillon, à la pince. En acier inoxydable : ils ne rouillent pas, ne noircissent pas et vont sous la douche.</p>
+      <div class="flex flex-wrap gap-3">
+        <a href="#creer" class="font-sans text-xs font-medium uppercase tracking-label bg-cacao text-platre rounded-full px-6 py-4 hover:bg-or transition-colors">Créer mon bijou</a>
+        <a href="#creations" class="font-sans text-xs font-medium uppercase tracking-label border border-cacao rounded-full px-6 py-4 hover:bg-cacao hover:text-platre transition-colors">Voir les créations</a>
+      </div>
+      <p class="text-sm text-taupe">À partir de <span class="font-display text-xl text-cacao">20 €</span> · pièces uniques ou en très petite série</p>
+    </div>
+
+    <div class="relative mx-auto w-[min(100%,26rem)] aspect-square">
+      <div class="tray absolute inset-[6%]"></div>
+      <span class="flake" style="width:14px;height:9px;left:24%;top:30%"></span>
+      <span class="flake" style="width:8px;height:6px;left:70%;top:24%;transform:rotate(40deg)"></span>
+      <span class="flake" style="width:11px;height:7px;left:66%;top:72%;transform:rotate(-20deg)"></span>
+      <span class="flake" style="width:6px;height:5px;left:30%;top:70%"></span>
+      <svg class="charm metal-gold absolute inset-0 w-full h-full" viewBox="0 0 320 320" aria-hidden="true">
+        <path class="ml" d="M40 92 Q160 196 280 92" fill="none" stroke-width="4" stroke-dasharray="11 6" stroke-linecap="round"/>
+        <g class="swing">
+          <circle class="ml" cx="160" cy="150" r="7" fill="none" stroke-width="3.5"/>
+          <ellipse class="m" cx="160" cy="205" rx="40" ry="50"/>
+          <ellipse class="ms" cx="160" cy="205" rx="33" ry="43" fill="none" stroke-width="1.5"/>
+          <text class="md" x="160" y="208" text-anchor="middle" dominant-baseline="central" style="font:italic 400 56px 'Bodoni Moda',Georgia,serif">B</text>
         </g>
       </svg>
-      <span class="eyebrow">Acier inoxydable · doré &amp; argenté</span>
-      <h1>Des bijoux <span class="script">faits main</span> pour tous les jours</h1>
-      <p class="lead">Colliers et bracelets en acier inoxydable, assemblés à la main avec mes pinces, une pièce à la fois. Ils ne noircissent pas et se personnalisent à ton initiale ou ton prénom.</p>
-      <div class="ctas">
-        <a class="btn solid" href="https://ig.me/m/bijinjewell" target="_blank" rel="noopener">Commander sur Instagram</a>
-        <a class="btn ghost" href="#collections">Voir les créations</a>
-      </div>
-      <div class="facts"><span>Ne noircit pas</span><span>Résiste à l'eau</span><span>Envoi partout en France</span></div>
-    </div>
-  </div>
-
-  <section id="collections">
-    <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">Les créations</span>
-        <h2>Les dorés &amp; les argentés</h2>
-        <p>Il n'y a pas de catalogue figé : chaque pièce naît au gré de l'inspiration, souvent en un ou deux exemplaires seulement. Écris-moi pour connaître les disponibilités et les prix.</p>
-      </div>
-      <div class="cols">
-        <article class="piece">
-          <div class="photo"><img src="photos/bracelet-cerises.jpg" alt="Bracelet doré à breloques cerises, cœur, médaille et nœud, posé sur un plateau en plâtre blanc" loading="lazy"></div>
-          <span class="tag">Doré</span>
-          <h3>Bracelet cerises &amp; nœud</h3>
-          <p>Maille dorée, breloques cerises rouges, cœur, médaille et petit nœud.</p>
-        </article>
-        <article class="piece">
-          <div class="photo"><img src="photos/battement-de-coeur.jpg" alt="Collier doré à pendentif battement de cœur sur un plateau en plâtre blanc" loading="lazy"></div>
-          <span class="tag">Doré</span>
-          <h3>Collier battement de cœur</h3>
-          <p>Chaîne fine et pendentif électrocardiogramme, à porter seul ou superposé.</p>
-        </article>
-        <article class="piece">
-          <div class="photo"><img src="photos/collier-mama.jpg" alt="Chaîne dorée avec les lettres MAMA et un petit cœur" loading="lazy"></div>
-          <span class="tag">Personnalisable</span>
-          <h3>Collier MAMA</h3>
-          <p>Lettres dorées et petit cœur. Une idée cadeau pour la fête des mères ou une naissance.</p>
-        </article>
-      </div>
     </div>
   </section>
 
-  <section id="atelier">
-    <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">L'atelier</span>
-        <h2>Assemblé à la main, maillon après maillon</h2>
-        <p>Chaque bijou est monté avec mes pinces et mon matériel : j'ouvre les anneaux, j'accroche les breloques et je ferme chaque attache à la main.</p>
-      </div>
-      <div class="steel">
-        <div><h3>Fait à la pince</h3><p>Pas de machine : chaque anneau est ouvert, positionné et refermé à la main, pour une attache solide.</p></div>
-        <div><h3>Des pièces uniques</h3><p>Les créations suivent l'inspiration du moment. Quand un modèle est parti, il ne revient pas forcément à l'identique.</p></div>
-        <div><h3>Composé pour toi</h3><p>Tu as une idée de breloque, de longueur ou de couleur ? On peut en parler et adapter le bijou.</p></div>
-      </div>
+  <!-- REASSURANCE -->
+  <section class="border-y border-filet bg-lin/60" aria-label="Nos garanties">
+    <ul class="gutter mx-auto max-w-6xl grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-4 py-8">
+      <li class="flex items-center gap-3 min-w-0">
+        <svg class="w-8 h-8 shrink-0 text-or" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M9 21l6-12m0 0l3 2m-3-2l-2-3m5 5l5 9M8 24h16"/></svg>
+        <span class="text-sm leading-snug"><b class="font-medium block">Fait main</b><span class="text-taupe">assemblé à la pince</span></span>
+      </li>
+      <li class="flex items-center gap-3 min-w-0">
+        <svg class="w-8 h-8 shrink-0 text-or" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M16 5c5 7 8 11 8 15a8 8 0 01-16 0c0-4 3-8 8-15z"/></svg>
+        <span class="text-sm leading-snug"><b class="font-medium block">Résiste à l'eau</b><span class="text-taupe">douche, mer, piscine</span></span>
+      </li>
+      <li class="flex items-center gap-3 min-w-0">
+        <svg class="w-8 h-8 shrink-0 text-or" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M16 4v6M16 22v6M4 16h6M22 16h6M8 8l4 4M20 20l4 4M24 8l-4 4M12 20l-4 4"/></svg>
+        <span class="text-sm leading-snug"><b class="font-medium block">Ne noircit pas</b><span class="text-taupe">acier inoxydable</span></span>
+      </li>
+      <li class="flex items-center gap-3 min-w-0">
+        <svg class="w-8 h-8 shrink-0 text-or" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 11l11-6 11 6v11l-11 6-11-6zM5 11l11 6 11-6M16 17v11"/></svg>
+        <span class="text-sm leading-snug"><b class="font-medium block">Envoi soigné</b><span class="text-taupe">partout en France</span></span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- CREATIONS -->
+  <section id="creations" class="scroll-mt-20 gutter mx-auto max-w-6xl py-16 md:py-24 grid gap-10">
+    <div class="grid gap-3 max-w-xl">
+      <p class="text-[0.7rem] font-medium uppercase tracking-label text-or">Les créations</p>
+      <h2 class="font-display text-4xl md:text-5xl">Pas de catalogue. <em class="text-or">Des pièces.</em></h2>
+      <p class="text-taupe leading-relaxed">Chaque bijou naît au gré de l'inspiration, souvent en un ou deux exemplaires. Quand il est parti, il ne revient pas forcément.</p>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8">
+      <article class="grid gap-2 min-w-0">
+        <div class="ph aspect-[3/4] rounded-sm relative">
+          <span class="absolute left-3 top-3 text-[0.6rem] font-medium uppercase tracking-label bg-platre px-2 py-1">Pièce unique</span>
+        </div>
+        <h3 class="font-display text-lg md:text-xl">Bracelet cerises &amp; nœud</h3>
+        <p class="text-sm text-taupe">Doré · photo à venir</p>
+      </article>
+      <article class="grid gap-2 min-w-0">
+        <div class="ph aspect-[3/4] rounded-sm relative">
+          <span class="absolute left-3 top-3 text-[0.6rem] font-medium uppercase tracking-label bg-or text-platre px-2 py-1">Personnalisable</span>
+        </div>
+        <h3 class="font-display text-lg md:text-xl">Collier Nina</h3>
+        <p class="text-sm text-taupe">Doré · à ta lettre</p>
+      </article>
+      <article class="grid gap-2 min-w-0">
+        <div class="ph aspect-[3/4] rounded-sm relative">
+          <span class="absolute left-3 top-3 text-[0.6rem] font-medium uppercase tracking-label bg-or text-platre px-2 py-1">Personnalisable</span>
+        </div>
+        <h3 class="font-display text-lg md:text-xl">Collier Red love</h3>
+        <p class="text-sm text-taupe">Doré · cœurs <span class="text-cerise">rouges</span></p>
+      </article>
+      <article class="grid gap-2 min-w-0">
+        <div class="ph aspect-[3/4] rounded-sm relative opacity-70">
+          <span class="absolute left-3 top-3 text-[0.6rem] font-medium uppercase tracking-label bg-cacao text-platre px-2 py-1">Parti</span>
+        </div>
+        <h3 class="font-display text-lg md:text-xl">Collier battement de cœur</h3>
+        <p class="text-sm text-taupe">Doré · exemple de pièce vendue</p>
+      </article>
     </div>
   </section>
 
-  <section id="personnalisation">
-    <div class="wrap perso">
-      <div class="charm-demo" id="charm-demo" data-finish="gold">
-        <svg class="charm-svg" viewBox="0 0 240 200" role="img" aria-labelledby="charm-desc">
-          <title id="charm-desc">Aperçu d'une breloque gravée de ta lettre</title>
-          <path class="ch" d="M6 26 Q120 124 234 26" fill="none" stroke-width="3.5" stroke-dasharray="9 5" stroke-linecap="round"/>
-          <g class="swing" id="charm-swing">
-            <circle class="ch-ring" cx="120" cy="80" r="6" fill="none" stroke-width="3"/>
-            <ellipse class="ch-disc" cx="120" cy="136" rx="38" ry="48"/>
-            <ellipse class="ch-rim" cx="120" cy="136" rx="31" ry="41" fill="none" stroke-width="1.5"/>
-            <text id="charm-letter" x="120" y="138" text-anchor="middle" dominant-baseline="central">L</text>
+  <!-- CONFIGURATOR -->
+  <section id="creer" class="scroll-mt-20 bg-lin">
+    <div class="gutter mx-auto max-w-6xl py-16 md:py-24 grid md:grid-cols-2 gap-10 md:gap-14 items-center">
+      <div id="preview" class="metal-gold relative mx-auto w-[min(100%,24rem)] aspect-square">
+        <div class="tray absolute inset-[4%]"></div>
+        <svg class="charm absolute inset-0 w-full h-full" viewBox="0 0 320 320" role="img" aria-labelledby="pv-desc">
+          <title id="pv-desc">Aperçu de ton bijou personnalisé</title>
+          <g id="chain-nina">
+            <path class="ml" d="M30 70 Q160 190 290 70" fill="none" stroke-width="6" stroke-dasharray="14 7" stroke-linecap="round"/>
+          </g>
+          <g id="chain-red" hidden>
+            <path class="ml" d="M30 70 Q160 190 290 70" fill="none" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+            <g fill="#9E2B33">
+              <path d="M74 103 c-4-5-10 0-6 5 l6 6 6-6 c4-5-2-10-6-5z"/>
+              <path d="M110 122 c-4-5-10 0-6 5 l6 6 6-6 c4-5-2-10-6-5z"/>
+              <path d="M210 122 c-4-5-10 0-6 5 l6 6 6-6 c4-5-2-10-6-5z"/>
+              <path d="M246 103 c-4-5-10 0-6 5 l6 6 6-6 c4-5-2-10-6-5z"/>
+            </g>
+          </g>
+          <g class="swing" id="swing">
+            <circle class="ml" cx="160" cy="138" r="7" fill="none" stroke-width="3.5"/>
+            <ellipse class="m" cx="160" cy="196" rx="42" ry="52"/>
+            <ellipse class="ms" cx="160" cy="196" rx="34" ry="44" fill="none" stroke-width="1.5"/>
+            <text id="pv-letter" class="md" x="160" y="199" text-anchor="middle" dominant-baseline="central" style="font:italic 400 58px 'Bodoni Moda',Georgia,serif">M</text>
           </g>
         </svg>
-        <div class="demo-row">
-          <label for="letter-input">Ta lettre</label>
-          <input id="letter-input" type="text" maxlength="1" value="L" autocomplete="off" autocapitalize="characters" spellcheck="false">
-        </div>
-        <div class="finish" role="group" aria-label="Finition">
-          <button type="button" data-finish="gold" aria-pressed="true">Doré</button>
-          <button type="button" data-finish="silver" aria-pressed="false">Argenté</button>
-        </div>
       </div>
-      <div style="display:grid;gap:2rem;min-width:0">
-        <div class="head">
-          <span class="eyebrow">Personnalisation</span>
-          <h2>À ton initiale ou ton prénom</h2>
-          <p>Les colliers Nina et Red love se font avec la lettre de ton choix. Pour un prénom entier, on en parle en message.</p>
+
+      <form id="config" class="grid gap-7 min-w-0" novalidate>
+        <div class="grid gap-3">
+          <p class="text-[0.7rem] font-medium uppercase tracking-label text-or">Personnalisation</p>
+          <h2 class="font-display text-4xl md:text-5xl">Crée <em class="text-or">ton</em> bijou</h2>
+          <p class="text-taupe leading-relaxed">Choisis ton modèle, ta lettre et ta finition. Je reçois ta demande complète en message et je le fabrique à la main.</p>
         </div>
-        <ol class="steps">
-          <li><div><b>Choisis ton modèle</b><span>Sur ce site ou sur mon Instagram.</span></div></li>
-          <li><div><b>Envoie-moi ta lettre ou ton prénom</b><span>En message privé, avec la couleur voulue : doré ou argenté.</span></div></li>
-          <li><div><b>Je le fabrique à la main</b><span>Une pièce à la fois, en acier inoxydable.</span></div></li>
-          <li><div><b>Tu le reçois chez toi</b><span>Envoi soigné partout en France.</span></div></li>
-        </ol>
-      </div>
+
+        <fieldset class="grid gap-3">
+          <legend class="text-[0.7rem] font-medium uppercase tracking-label text-taupe mb-3">1 · Le modèle</legend>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="cursor-pointer">
+              <input type="radio" name="model" id="m-nina" value="Collier Nina" class="peer sr-only" checked>
+              <span class="block rounded-sm border border-filet bg-platre px-4 py-3 peer-checked:border-cacao peer-checked:shadow-[inset_0_0_0_1px_#3B2F27] peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-or">
+                <b class="font-display text-lg font-normal block">Nina</b><span class="text-xs text-taupe">maille forçat, breloques</span>
+              </span>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="model" id="m-red" value="Collier Red love" class="peer sr-only">
+              <span class="block rounded-sm border border-filet bg-platre px-4 py-3 peer-checked:border-cacao peer-checked:shadow-[inset_0_0_0_1px_#3B2F27] peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-or">
+                <b class="font-display text-lg font-normal block">Red love</b><span class="text-xs text-taupe">chaîne fine, cœurs rouges</span>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="grid gap-3">
+          <label for="letter" class="text-[0.7rem] font-medium uppercase tracking-label text-taupe">2 · Ta lettre</label>
+          <input id="letter" type="text" maxlength="1" value="M" autocomplete="off" autocapitalize="characters" spellcheck="false"
+            class="w-16 h-16 text-center font-display italic text-3xl uppercase bg-platre border border-filet rounded-full focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-or">
+        </div>
+
+        <fieldset class="grid gap-3">
+          <legend class="text-[0.7rem] font-medium uppercase tracking-label text-taupe mb-3">3 · La finition</legend>
+          <div class="inline-flex w-fit rounded-full border border-filet bg-platre p-1" role="group">
+            <button type="button" data-finish="gold" aria-pressed="true" class="fin rounded-full px-5 py-2.5 text-xs font-medium uppercase tracking-label aria-pressed:bg-cacao aria-pressed:text-platre text-taupe">Doré</button>
+            <button type="button" data-finish="silver" aria-pressed="false" class="fin rounded-full px-5 py-2.5 text-xs font-medium uppercase tracking-label aria-pressed:bg-cacao aria-pressed:text-platre text-taupe">Argenté</button>
+          </div>
+        </fieldset>
+
+        <div class="grid gap-3 border-t border-filet pt-6">
+          <p class="text-sm text-taupe">Ton message :</p>
+          <p id="msg" class="font-display italic text-lg leading-snug select-all"></p>
+          <div class="flex flex-wrap items-center gap-4">
+            <button type="submit" class="font-sans text-xs font-medium uppercase tracking-label bg-cacao text-platre rounded-full px-6 py-4 hover:bg-or transition-colors">Copier mon message</button>
+            <span id="copied" class="text-sm text-or" role="status"></span>
+          </div>
+          <a id="ig-link" href="https://ig.me/m/bijinjewell" target="_blank" rel="noopener" class="text-sm text-taupe underline underline-offset-4 w-fit">Puis ouvrir la conversation Instagram</a>
+        </div>
+      </form>
     </div>
   </section>
 
-  <section id="acier">
-    <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">Pourquoi l'acier inoxydable</span>
-        <h2>Un bijou qui reste beau</h2>
-      </div>
-      <div class="steel">
-        <div><h3>Ne rouille pas, ne noircit pas</h3><p>L'acier inoxydable ne rouille pas et ne s'oxyde pas comme le plaqué classique. Ton bijou garde sa couleur.</p></div>
-        <div><h3>Résiste à l'eau</h3><p>Tu peux le garder sous la douche ou à la plage sans t'inquiéter.</p></div>
-        <div><h3>Solide au quotidien</h3><p>Un métal robuste, fait pour être porté tous les jours, pas seulement le week-end.</p></div>
-        <div><h3>Facile à entretenir</h3><p>Un coup de chiffon doux suffit. Évite simplement de vaporiser ton parfum directement dessus.</p></div>
-      </div>
+  <!-- ATELIER -->
+  <section id="atelier" class="scroll-mt-20 gutter mx-auto max-w-6xl py-16 md:py-24 grid md:grid-cols-[1fr_1.1fr] gap-10 md:gap-16 items-center">
+    <div class="ph aspect-[4/5] rounded-sm grid place-items-end p-6">
+      <span class="text-xs text-taupe">Photo à venir : tes mains, la pince, un anneau qu'on referme</span>
     </div>
-  </section>
-
-  <section id="commander" class="order">
-    <div class="wrap">
-      <span class="eyebrow">Commander</span>
-      <h2>Écris-moi sur <span class="script">Instagram</span></h2>
-      <p class="handle">@bijinjewell</p>
-      <a class="btn solid" href="https://ig.me/m/bijinjewell" target="_blank" rel="noopener">Envoyer un message</a>
-      <dl>
-        <div><dt>Livraison</dt><dd>Partout en France</dd></div>
-        <div><dt>Fabrication</dt><dd>À la main, en petite série</dd></div>
+    <div class="grid gap-8 min-w-0">
+      <div class="grid gap-3">
+        <p class="text-[0.7rem] font-medium uppercase tracking-label text-or">L'atelier</p>
+        <h2 class="font-display text-4xl md:text-5xl">Maillon <em class="text-or">après</em> maillon</h2>
+        <p class="text-taupe leading-relaxed">Pas de machine. J'ouvre chaque anneau à la pince, j'accroche la breloque et je referme l'attache à la main.</p>
+      </div>
+      <dl class="grid gap-6">
+        <div class="grid grid-cols-[2.5rem_1fr] gap-4"><dt class="font-display italic text-3xl text-or">i.</dt><dd><b class="font-medium block">Fait à la pince</b><span class="text-taupe text-sm">Chaque attache est refermée à la main pour qu'elle tienne.</span></dd></div>
+        <div class="grid grid-cols-[2.5rem_1fr] gap-4"><dt class="font-display italic text-3xl text-or">ii.</dt><dd><b class="font-medium block">Au gré de l'inspiration</b><span class="text-taupe text-sm">Les modèles changent selon les breloques et les envies du moment.</span></dd></div>
+        <div class="grid grid-cols-[2.5rem_1fr] gap-4"><dt class="font-display italic text-3xl text-or">iii.</dt><dd><b class="font-medium block">Sur-mesure</b><span class="text-taupe text-sm">Une longueur, une couleur, une breloque en tête ? On en parle.</span></dd></div>
       </dl>
+    </div>
+  </section>
+
+  <!-- PREUVE INOX -->
+  <section class="bg-cacao text-platre">
+    <div class="gutter mx-auto max-w-6xl py-16 md:py-20 grid md:grid-cols-[1.2fr_1fr] gap-10 items-center">
+      <div class="grid gap-4 min-w-0">
+        <p class="text-[0.7rem] font-medium uppercase tracking-label text-[#DCC395]">La preuve par l'eau</p>
+        <h2 class="font-display text-4xl md:text-5xl">30 jours sous la douche. <em class="text-[#DCC395]">Toujours doré.</em></h2>
+        <p class="text-[#d9cfc3] leading-relaxed max-w-lg">L'acier inoxydable ne rouille pas et ne s'oxyde pas. Tu peux garder ton bijou à la plage, à la piscine, sous la douche.</p>
+      </div>
+      <div class="aspect-[9/12] w-[min(100%,18rem)] mx-auto rounded-sm border border-[#5a4a3e] grid place-items-center text-center p-6 text-sm text-[#bfae9b]">
+        Reel à venir :<br>ton bijou avant / après 30 jours d'eau
+      </div>
+    </div>
+  </section>
+
+  <!-- AVIS -->
+  <section class="gutter mx-auto max-w-6xl py-16 md:py-24 grid gap-10">
+    <div class="grid gap-3 max-w-xl">
+      <p class="text-[0.7rem] font-medium uppercase tracking-label text-or">Elles le portent</p>
+      <h2 class="font-display text-4xl md:text-5xl">Vos <em class="text-or">mots</em></h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4">
+      <figure class="ph rounded-sm p-8 grid gap-4 min-h-[11rem] content-between"><blockquote class="font-display italic text-lg text-taupe">Capture d'un avis client à venir</blockquote><figcaption class="text-xs uppercase tracking-label text-taupe">Prénom · ville</figcaption></figure>
+      <figure class="ph rounded-sm p-8 grid gap-4 min-h-[11rem] content-between"><blockquote class="font-display italic text-lg text-taupe">Capture d'un avis client à venir</blockquote><figcaption class="text-xs uppercase tracking-label text-taupe">Prénom · ville</figcaption></figure>
+      <figure class="ph rounded-sm p-8 grid gap-4 min-h-[11rem] content-between"><blockquote class="font-display italic text-lg text-taupe">Capture d'un avis client à venir</blockquote><figcaption class="text-xs uppercase tracking-label text-taupe">Prénom · ville</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="scroll-mt-20 border-t border-filet">
+    <div class="gutter mx-auto max-w-3xl py-16 md:py-24 grid gap-8">
+      <div class="grid gap-3">
+        <p class="text-[0.7rem] font-medium uppercase tracking-label text-or">Commander</p>
+        <h2 class="font-display text-4xl md:text-5xl">Questions <em class="text-or">fréquentes</em></h2>
+      </div>
+      <div class="divide-y divide-filet border-y border-filet">
+        <details class="group py-5"><summary class="flex justify-between items-center cursor-pointer list-none font-display text-xl">Comment je commande ?<span class="text-or text-2xl transition-transform group-open:rotate-45">+</span></summary><p class="pt-3 text-taupe leading-relaxed">Par message privé sur Instagram (@bijinjewell). Le configurateur ci-dessus prépare le message pour toi.</p></details>
+        <details class="group py-5"><summary class="flex justify-between items-center cursor-pointer list-none font-display text-xl">Combien ça coûte ?<span class="text-or text-2xl transition-transform group-open:rotate-45">+</span></summary><p class="pt-3 text-taupe leading-relaxed">Les bijoux commencent à 20 €. Le prix dépend du modèle et des breloques ; je te le confirme en message.</p></details>
+        <details class="group py-5"><summary class="flex justify-between items-center cursor-pointer list-none font-display text-xl">Je peux le porter dans l'eau ?<span class="text-or text-2xl transition-transform group-open:rotate-45">+</span></summary><p class="pt-3 text-taupe leading-relaxed">Oui. L'acier inoxydable ne rouille pas et ne noircit pas. Évite simplement de vaporiser ton parfum directement dessus.</p></details>
+        <details class="group py-5"><summary class="flex justify-between items-center cursor-pointer list-none font-display text-xl">Vous livrez où ?<span class="text-or text-2xl transition-transform group-open:rotate-45">+</span></summary><p class="pt-3 text-taupe leading-relaxed">Partout en France. Les délais et frais d'envoi te sont précisés en message.</p></details>
+      </div>
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="wrap">
+<footer class="border-t border-filet">
+  <div class="gutter mx-auto max-w-6xl py-8 flex flex-wrap justify-between gap-4 font-sans text-sm text-taupe">
     <span>© 2026 Bijin Jewell · bijoux faits main en acier inoxydable</span>
-    <a href="https://www.instagram.com/bijinjewell/" target="_blank" rel="noopener">Instagram</a>
+    <a class="hover:text-or" href="https://www.instagram.com/bijinjewell/" target="_blank" rel="noopener">Instagram @bijinjewell</a>
   </div>
 </footer>
 
 <script>
-  const btn = document.getElementById("menu-btn");
-  const menu = document.getElementById("menu");
-  function setMenu(open) {
-    menu.classList.toggle("open", open);
-    btn.setAttribute("aria-expanded", String(open));
-    btn.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
-  }
-  btn.addEventListener("click", () => setMenu(!menu.classList.contains("open")));
-  menu.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
-  document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+  const preview = document.getElementById("preview");
+  const swing = document.getElementById("swing");
+  const letterEl = document.getElementById("pv-letter");
+  const input = document.getElementById("letter");
+  const msg = document.getElementById("msg");
+  const copied = document.getElementById("copied");
+  const form = document.getElementById("config");
+  let finish = "gold";
 
-  const demo = document.getElementById("charm-demo");
-  const input = document.getElementById("letter-input");
-  const letter = document.getElementById("charm-letter");
-  const swing = document.getElementById("charm-swing");
-  function jiggle() {
-    swing.classList.remove("tick");
-    void swing.getBBox();
-    swing.classList.add("tick");
+  function jiggle() { swing.classList.remove("tick"); void swing.getBBox(); swing.classList.add("tick"); }
+  function model() { return form.querySelector("input[name=model]:checked").value; }
+  function render() {
+    const red = model() === "Collier Red love";
+    document.getElementById("chain-red").hidden = !red;
+    document.getElementById("chain-nina").hidden = red;
+    preview.classList.toggle("metal-gold", finish === "gold");
+    preview.classList.toggle("metal-silver", finish === "silver");
+    const l = input.value || "…";
+    letterEl.textContent = input.value || "?";
+    msg.textContent = `Bonjour ! Je voudrais le ${model()}, lettre ${l}, ${finish === "gold" ? "doré" : "argenté"}.`;
   }
+
   input.addEventListener("input", () => {
     const ch = input.value.match(/\p{L}/u);
     input.value = ch ? ch[0].toUpperCase() : "";
-    if (ch) { letter.textContent = input.value; jiggle(); }
+    render(); jiggle();
   });
   input.addEventListener("focus", () => input.select());
-  demo.querySelectorAll(".finish button").forEach(b => b.addEventListener("click", () => {
-    demo.dataset.finish = b.dataset.finish;
-    demo.querySelectorAll(".finish button").forEach(o => o.setAttribute("aria-pressed", String(o === b)));
-    jiggle();
+  form.querySelectorAll("input[name=model]").forEach(r => r.addEventListener("change", () => { render(); jiggle(); }));
+  form.querySelectorAll(".fin").forEach(b => b.addEventListener("click", () => {
+    finish = b.dataset.finish;
+    form.querySelectorAll(".fin").forEach(o => o.setAttribute("aria-pressed", String(o === b)));
+    render(); jiggle();
   }));
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    try {
+      await navigator.clipboard.writeText(msg.textContent);
+      copied.textContent = "Message copié. Colle-le dans ma conversation Instagram.";
+    } catch {
+      const r = document.createRange(); r.selectNodeContents(msg);
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      copied.textContent = "Sélectionne et copie le message, puis ouvre mes messages.";
+    }
+  });
+  render();
 </script>
 </body>
 </html>
