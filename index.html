@@ -195,6 +195,7 @@ section > .wrap { padding-block: clamp(3.5rem, 8vw, 6rem); display: grid; gap: 2
 footer .wrap { padding-block: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; font-size: 0.85rem; color: var(--ink-soft); }
 
 @media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
   .drape .sway { transform-origin: 50% 0; animation: sway 6s ease-in-out infinite alternate; }
   @keyframes sway { from { transform: rotate(-2.5deg); } to { transform: rotate(2.5deg); } }
 }
