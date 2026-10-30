@@ -161,16 +161,40 @@ section > .wrap { padding-block: clamp(3.5rem, 8vw, 6rem); display: grid; gap: 2
 
 /* personalisation */
 .perso { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 3rem; align-items: center; }
-.letters { display: flex; gap: clamp(0.5rem, 2vw, 1rem); justify-content: center; flex-wrap: wrap; }
-.letters span {
-  width: clamp(3rem, 9vw, 4.6rem); aspect-ratio: 3 / 4;
-  display: grid; place-items: center;
-  border: 1.5px solid var(--gold);
-  border-radius: 50% / 40%;
-  font: 400 clamp(1.6rem, 4vw, 2.4rem)/1 var(--display);
-  color: var(--gold);
-  background: var(--sand);
+/* live charm preview: type a letter, pick a finish */
+.charm-demo {
+  --metal: var(--gold); --metal-soft: var(--gold-soft); --metal-deep: #7a5a24;
+  display: grid; justify-items: center; gap: 1.1rem;
+  padding: 2rem 1.25rem 2.25rem;
+  background: radial-gradient(110% 90% at 50% 35%, var(--plaster) 0 40%, var(--sand) 100%);
+  min-width: 0;
 }
+.charm-demo[data-finish="silver"] { --metal: #8f989e; --metal-soft: #cfd5d8; --metal-deep: #5c6469; }
+.charm-svg { width: min(100%, 300px); height: auto; }
+.charm-svg .ch { stroke: var(--metal); transition: stroke 0.3s; }
+.charm-svg .ch-ring { stroke: var(--metal); transition: stroke 0.3s; }
+.charm-svg .ch-disc { fill: var(--metal); transition: fill 0.3s; }
+.charm-svg .ch-rim { stroke: var(--metal-soft); transition: stroke 0.3s; }
+.charm-svg text { font: 400 52px var(--display); fill: var(--metal-deep); transition: fill 0.3s; }
+.charm-svg .swing { transform-origin: 120px 80px; }
+.charm-svg .swing.tick { animation: tick 0.6s ease-out; }
+@keyframes tick { 0% { transform: rotate(7deg); } 45% { transform: rotate(-4deg); } 100% { transform: rotate(0); } }
+@media (prefers-reduced-motion: reduce) { .charm-svg .swing.tick { animation: none; } }
+.demo-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.8rem; }
+.charm-demo label { font: 500 0.7rem/1 var(--body); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
+#letter-input {
+  width: 3.4rem; height: 3.4rem; text-align: center;
+  font: 400 1.8rem/1 var(--display); color: var(--ink); text-transform: uppercase;
+  background: var(--plaster); border: 1px solid var(--line); border-radius: 50%;
+}
+#letter-input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.finish { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--plaster); }
+.finish button {
+  font: 500 0.72rem/1 var(--body); letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 0.7rem 1rem; border: 0; border-radius: 999px; background: none; color: var(--ink-soft); cursor: pointer;
+}
+.finish button[aria-pressed="true"] { background: var(--ink); color: var(--plaster); }
+.finish button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.4rem; counter-reset: s; }
 .steps li { display: grid; grid-template-columns: 2.4rem 1fr; gap: 1rem; counter-increment: s; min-width: 0; }
 .steps li::before { content: counter(s); font: 400 2rem/1 var(--display); color: var(--gold); }
@@ -211,6 +235,7 @@ footer .wrap { padding-block: 2rem; display: flex; flex-wrap: wrap; justify-cont
     </button>
     <nav aria-label="Sections" id="menu">
       <a href="#collections">Collections</a>
+      <a href="#atelier">L'atelier</a>
       <a href="#personnalisation">Personnalisation</a>
       <a href="#acier">L'acier</a>
       <a href="#commander">Commander</a>
@@ -238,7 +263,7 @@ footer .wrap { padding-block: 2rem; display: flex; flex-wrap: wrap; justify-cont
       </svg>
       <span class="eyebrow">Acier inoxydable · doré &amp; argenté</span>
       <h1>Des bijoux <span class="script">faits main</span> pour tous les jours</h1>
-      <p class="lead">Colliers et bracelets en acier inoxydable, assemblés à la main une pièce à la fois. Ils ne noircissent pas et se personnalisent à ton initiale ou ton prénom.</p>
+      <p class="lead">Colliers et bracelets en acier inoxydable, assemblés à la main avec mes pinces, une pièce à la fois. Ils ne noircissent pas et se personnalisent à ton initiale ou ton prénom.</p>
       <div class="ctas">
         <a class="btn solid" href="https://ig.me/m/bijinjewell" target="_blank" rel="noopener">Commander sur Instagram</a>
         <a class="btn ghost" href="#collections">Voir les créations</a>
@@ -252,7 +277,7 @@ footer .wrap { padding-block: 2rem; display: flex; flex-wrap: wrap; justify-cont
       <div class="head">
         <span class="eyebrow">Les créations</span>
         <h2>Les dorés &amp; les argentés</h2>
-        <p>Chaque modèle est fabriqué en petite quantité, parfois en une ou deux pièces seulement. Écris-moi pour connaître les disponibilités et les prix.</p>
+        <p>Il n'y a pas de catalogue figé : chaque pièce naît au gré de l'inspiration, souvent en un ou deux exemplaires seulement. Écris-moi pour connaître les disponibilités et les prix.</p>
       </div>
       <div class="cols">
         <article class="piece">
@@ -277,9 +302,43 @@ footer .wrap { padding-block: 2rem; display: flex; flex-wrap: wrap; justify-cont
     </div>
   </section>
 
+  <section id="atelier">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">L'atelier</span>
+        <h2>Assemblé à la main, maillon après maillon</h2>
+        <p>Chaque bijou est monté avec mes pinces et mon matériel : j'ouvre les anneaux, j'accroche les breloques et je ferme chaque attache à la main.</p>
+      </div>
+      <div class="steel">
+        <div><h3>Fait à la pince</h3><p>Pas de machine : chaque anneau est ouvert, positionné et refermé à la main, pour une attache solide.</p></div>
+        <div><h3>Des pièces uniques</h3><p>Les créations suivent l'inspiration du moment. Quand un modèle est parti, il ne revient pas forcément à l'identique.</p></div>
+        <div><h3>Composé pour toi</h3><p>Tu as une idée de breloque, de longueur ou de couleur ? On peut en parler et adapter le bijou.</p></div>
+      </div>
+    </div>
+  </section>
+
   <section id="personnalisation">
     <div class="wrap perso">
-      <div class="letters" aria-hidden="true"><span>L</span><span>N</span><span>D</span><span>A</span></div>
+      <div class="charm-demo" id="charm-demo" data-finish="gold">
+        <svg class="charm-svg" viewBox="0 0 240 200" role="img" aria-labelledby="charm-desc">
+          <title id="charm-desc">Aperçu d'une breloque gravée de ta lettre</title>
+          <path class="ch" d="M6 26 Q120 124 234 26" fill="none" stroke-width="3.5" stroke-dasharray="9 5" stroke-linecap="round"/>
+          <g class="swing" id="charm-swing">
+            <circle class="ch-ring" cx="120" cy="80" r="6" fill="none" stroke-width="3"/>
+            <ellipse class="ch-disc" cx="120" cy="136" rx="38" ry="48"/>
+            <ellipse class="ch-rim" cx="120" cy="136" rx="31" ry="41" fill="none" stroke-width="1.5"/>
+            <text id="charm-letter" x="120" y="138" text-anchor="middle" dominant-baseline="central">L</text>
+          </g>
+        </svg>
+        <div class="demo-row">
+          <label for="letter-input">Ta lettre</label>
+          <input id="letter-input" type="text" maxlength="1" value="L" autocomplete="off" autocapitalize="characters" spellcheck="false">
+        </div>
+        <div class="finish" role="group" aria-label="Finition">
+          <button type="button" data-finish="gold" aria-pressed="true">Doré</button>
+          <button type="button" data-finish="silver" aria-pressed="false">Argenté</button>
+        </div>
+      </div>
       <div style="display:grid;gap:2rem;min-width:0">
         <div class="head">
           <span class="eyebrow">Personnalisation</span>
@@ -303,7 +362,7 @@ footer .wrap { padding-block: 2rem; display: flex; flex-wrap: wrap; justify-cont
         <h2>Un bijou qui reste beau</h2>
       </div>
       <div class="steel">
-        <div><h3>Ne noircit pas</h3><p>L'acier inoxydable ne s'oxyde pas comme le plaqué classique. Ton bijou garde sa couleur.</p></div>
+        <div><h3>Ne rouille pas, ne noircit pas</h3><p>L'acier inoxydable ne rouille pas et ne s'oxyde pas comme le plaqué classique. Ton bijou garde sa couleur.</p></div>
         <div><h3>Résiste à l'eau</h3><p>Tu peux le garder sous la douche ou à la plage sans t'inquiéter.</p></div>
         <div><h3>Solide au quotidien</h3><p>Un métal robuste, fait pour être porté tous les jours, pas seulement le week-end.</p></div>
         <div><h3>Facile à entretenir</h3><p>Un coup de chiffon doux suffit. Évite simplement de vaporiser ton parfum directement dessus.</p></div>
@@ -343,6 +402,27 @@ footer .wrap { padding-block: 2rem; display: flex; flex-wrap: wrap; justify-cont
   btn.addEventListener("click", () => setMenu(!menu.classList.contains("open")));
   menu.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
   document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+
+  const demo = document.getElementById("charm-demo");
+  const input = document.getElementById("letter-input");
+  const letter = document.getElementById("charm-letter");
+  const swing = document.getElementById("charm-swing");
+  function jiggle() {
+    swing.classList.remove("tick");
+    void swing.getBBox();
+    swing.classList.add("tick");
+  }
+  input.addEventListener("input", () => {
+    const ch = input.value.match(/\p{L}/u);
+    input.value = ch ? ch[0].toUpperCase() : "";
+    if (ch) { letter.textContent = input.value; jiggle(); }
+  });
+  input.addEventListener("focus", () => input.select());
+  demo.querySelectorAll(".finish button").forEach(b => b.addEventListener("click", () => {
+    demo.dataset.finish = b.dataset.finish;
+    demo.querySelectorAll(".finish button").forEach(o => o.setAttribute("aria-pressed", String(o === b)));
+    jiggle();
+  }));
 </script>
 </body>
 </html>
