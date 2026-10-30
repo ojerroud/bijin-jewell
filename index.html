@@ -77,9 +77,46 @@ header .wrap { display: flex; justify-content: space-between; align-items: cente
 section { scroll-margin-top: 4.5rem; }
 .mark { font: 400 1.5rem/1 var(--display); letter-spacing: 0.32em; text-transform: uppercase; text-decoration: none; }
 .mark small { display: block; font: 300 0.68rem/1 var(--body); letter-spacing: 0.3em; color: var(--ink-soft); margin-top: 0.4rem; }
-header nav { display: flex; gap: 1.6rem; font-size: 0.875rem; }
-header nav a { text-decoration: none; color: var(--ink-soft); }
+/* mobile first: the menu folds behind a button, opens as a panel under the header */
+.menu-btn {
+  display: inline-grid; place-items: center; align-content: center; gap: 5px;
+  width: 44px; height: 44px; padding: 0;
+  background: none; border: 1px solid var(--line); border-radius: 50%;
+  cursor: pointer;
+}
+.menu-btn span { display: block; width: 18px; height: 1.5px; background: var(--ink); transition: transform 0.2s, opacity 0.2s; }
+.menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.menu-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+header nav {
+  display: none;
+  position: absolute; left: 0; right: 0; top: 100%;
+  flex-direction: column;
+  padding-block: 0.5rem 1.2rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background: var(--plaster);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 12px 24px -18px var(--ink);
+}
+header nav.open { display: flex; }
+header nav a {
+  text-decoration: none; color: var(--ink);
+  font: 400 1.6rem/1 var(--display);
+  padding-block: 0.85rem;
+  border-bottom: 1px solid var(--line);
+}
+header nav a:last-child { border-bottom: 0; }
 header nav a:hover { color: var(--gold); }
+@media (min-width: 720px) {
+  .menu-btn { display: none; }
+  header nav, header nav.open {
+    display: flex; position: static; flex-direction: row; gap: 1.6rem;
+    padding: 0; background: none; border: 0; box-shadow: none;
+  }
+  header nav a { font: 400 0.875rem/1 var(--body); color: var(--ink-soft); padding: 0; border: 0; }
+}
 
 /* hero */
 .hero { position: relative; overflow: hidden; }
@@ -157,9 +194,6 @@ section > .wrap { padding-block: clamp(3.5rem, 8vw, 6rem); display: grid; gap: 2
 
 footer .wrap { padding-block: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; font-size: 0.85rem; color: var(--ink-soft); }
 
-@media (max-width: 640px) {
-  header nav { display: none; }
-}
 @media (prefers-reduced-motion: no-preference) {
   .drape .sway { transform-origin: 50% 0; animation: sway 6s ease-in-out infinite alternate; }
   @keyframes sway { from { transform: rotate(-2.5deg); } to { transform: rotate(2.5deg); } }
@@ -171,7 +205,10 @@ footer .wrap { padding-block: 2rem; display: flex; flex-wrap: wrap; justify-cont
 <header>
   <div class="wrap">
     <a class="mark" href="#">Bijin Jewell<small>bijoux faits main</small></a>
-    <nav aria-label="Sections">
+    <button class="menu-btn" id="menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav aria-label="Sections" id="menu">
       <a href="#collections">Collections</a>
       <a href="#personnalisation">Personnalisation</a>
       <a href="#acier">L'acier</a>
@@ -293,5 +330,18 @@ footer .wrap { padding-block: 2rem; display: flex; flex-wrap: wrap; justify-cont
     <a href="https://www.instagram.com/bijinjewell/" target="_blank" rel="noopener">Instagram</a>
   </div>
 </footer>
+
+<script>
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("menu");
+  function setMenu(open) {
+    menu.classList.toggle("open", open);
+    btn.setAttribute("aria-expanded", String(open));
+    btn.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+  }
+  btn.addEventListener("click", () => setMenu(!menu.classList.contains("open")));
+  menu.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+</script>
 </body>
 </html>
